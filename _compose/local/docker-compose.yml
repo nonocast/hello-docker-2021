@@ -21,5 +21,7 @@ services:
 
   frontend:
     image: registry.cn-shanghai.aliyuncs.com/h705c/demo-frontend:latest
+    environment:
+      - "BACKEND_BASE=http://h705c.io"
     labels:
       - 'traefik.http.routers.frontend.rule=PathPrefix(`/`)'
