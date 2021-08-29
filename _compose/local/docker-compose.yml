@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  reverse-proxy:
+    image: traefik:v2.5
+    command: --api.insecure=true --providers.docker
+    ports:
+      - '80:80'
+      - '8080:8080'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  backend:
+    image: registry.cn-shanghai.aliyuncs.com/h705c/demo-backend:latest
+    labels:
+      - 'traefik.http.routers.backend.rule=PathPrefix(`/backend`)'
+      - 'traefik.http.routers.backend.middlewares=backend-stripprefix'
+      - 'traefik.http.middlewares.backend-stripprefix.stripprefix.prefixes=/backend'
+      - 'traefik.http.middlewares.backend-stripprefix.stripprefix.forceSlash=false'
+      - 'traefik.http.services.backend.loadbalancer.server.port=9000'
+
+  frontend:
+    image: registry.cn-shanghai.aliyuncs.com/h705c/demo-frontend:latest
+    labels:
+      - 'traefik.http.routers.frontend.rule=PathPrefix(`/`)'

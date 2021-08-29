@@ -6,6 +6,7 @@ function App(props) {
   return (
     <div className="App">
       <h1>demo page</h1>
+      <p>backend base: {window.BACKEND_BASE}</p>
       <p>{props.message}</p>
     </div>
   );

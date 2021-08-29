@@ -1,0 +1,1 @@
+window.BACKEND_BASE = 'http://localhost'

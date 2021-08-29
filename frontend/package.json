@@ -16,7 +16,8 @@
     "start": "BROWSER=safari react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docker": "docker build -t frontend:latest . &&  docker tag frontend:latest registry.cn-shanghai.aliyuncs.com/h705c/demo-frontend:latest && docker push registry.cn-shanghai.aliyuncs.com/h705c/demo-frontend:latest"
   },
   "eslintConfig": {
     "extends": [
@@ -35,5 +36,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^2.0.1"
   }
 }
