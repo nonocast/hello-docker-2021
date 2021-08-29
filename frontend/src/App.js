@@ -20,7 +20,7 @@ let hoc = WrappedComponent => {
     }
 
     async componentDidMount() {
-      let resp = await axios.get('http://localhost:9000');
+      let resp = await axios.get(`${window.BACKEND_BASE}/`);
       this.setState({ message: resp.data });
     }
 
